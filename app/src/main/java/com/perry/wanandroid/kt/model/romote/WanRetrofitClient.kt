@@ -10,9 +10,9 @@ import okhttp3.CacheControl
 import okhttp3.OkHttpClient
 import java.io.File
 
-class WanAndroidRetrofitClient : BaseRetrofitClient() {
+object WanRetrofitClient : BaseRetrofitClient() {
 
-    val service by lazy { WanAndroidRetrofitClient().getService(WanAndroidApi::class.java, "") }
+    val service by lazy { getService(WanAndroidApi::class.java, WanAndroidApi.BASE_URL) }
 
     private val cookieJar by lazy { PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(App.CONTEXT)) }
 
