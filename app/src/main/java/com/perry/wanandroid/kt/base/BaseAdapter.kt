@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.perry.wanandroid.kt.BR
 
 class BaseAdapter<T>(itemLayoutId: Int, data: List<T>) : BaseQuickAdapter<T, BindingViewHolder>(itemLayoutId, data) {
 
@@ -16,7 +17,7 @@ class BaseAdapter<T>(itemLayoutId: Int, data: List<T>) : BaseQuickAdapter<T, Bin
     }
 
     override fun convert(helper: BindingViewHolder?, item: T) {
-//        helper?.dataBinding?.setVariable(BR.data, item)
+        helper?.dataBinding?.setVariable(BR.data, item)
 
         childViewClickListenerList.forEach { helper?.addOnClickListener(it) }
     }
