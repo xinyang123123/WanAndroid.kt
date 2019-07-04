@@ -65,6 +65,9 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
             } else {
                 //TODO: add error handle
                 errorMsg.value = result.errorMsg
+                requestStatus.value = RequestStatus.ERROR
+                srlStatus.value = RequestStatus.ERROR
+                if (isLoadMore) loadMoreStatus.value = RequestStatus.ERROR
                 errorBlock()
             }
         }

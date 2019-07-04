@@ -22,8 +22,8 @@ class HomeViewModel : BaseViewModel() {
             page = PAGE_START
             val result = withContext(Dispatchers.IO) { repository.getHomeArticles(page) }
             resolveResponse(result, {
-                page++
                 listData.value = result.data.datas
+                page++
             }, {})
         }
     }
@@ -35,7 +35,7 @@ class HomeViewModel : BaseViewModel() {
                 if (result.data.over) loadMoreStatus.value = RequestStatus.COMPLETE
                 loadMoreData.value = result.data.datas
                 page++
-            }, {})
+            }, {}, true)
         }
     }
 

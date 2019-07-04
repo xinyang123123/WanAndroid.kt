@@ -17,8 +17,8 @@ abstract class BaseActivity<VM : BaseViewModel, B : ViewDataBinding> : AppCompat
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, layoutId)
-        initBinding()
         initViewModel()
+        initBinding()
         startObserve()
         initData()
     }

@@ -6,7 +6,7 @@ import retrofit2.http.*
 interface WanAndroidApi {
 
     companion object {
-        const val BASE_URL = "https://www.wanandroid.com"
+        const val BASE_URL = "https://www.wanandroid.com/"
     }
 
     @GET("/article/list/{page}/json")

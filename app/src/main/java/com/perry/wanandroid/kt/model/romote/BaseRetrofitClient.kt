@@ -20,7 +20,7 @@ abstract class BaseRetrofitClient {
             val builder = OkHttpClient.Builder()
             val logging = HttpLoggingInterceptor()
             if (BuildConfig.DEBUG) {
-                logging.level = HttpLoggingInterceptor.Level.BODY
+                logging.level = HttpLoggingInterceptor.Level.BASIC
             } else {
                 logging.level = HttpLoggingInterceptor.Level.BASIC
             }
@@ -28,11 +28,10 @@ abstract class BaseRetrofitClient {
             builder.addInterceptor(logging)
                 .connectTimeout(TIME_OUT.toLong(), TimeUnit.SECONDS)
 
-            handleBuilder(builder)
+//            handleBuilder(builder)
 
             return builder.build()
         }
-
 
     fun <S> getService(service: Class<S>, baseUrl: String): S {
         return Retrofit.Builder()
