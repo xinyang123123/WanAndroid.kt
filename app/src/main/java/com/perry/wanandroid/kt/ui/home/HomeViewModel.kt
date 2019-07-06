@@ -20,6 +20,7 @@ class HomeViewModel : BaseViewModel() {
     fun getHomeArticles() {
         launch {
             page = PAGE_START
+            srlStatus.value = RequestStatus.START
             val result = withContext(Dispatchers.IO) { repository.getHomeArticles(page) }
             resolveResponse(result, {
                 listData.value = result.data.datas

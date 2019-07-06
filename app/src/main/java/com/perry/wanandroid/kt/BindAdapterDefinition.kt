@@ -1,5 +1,6 @@
 package com.perry.wanandroid.kt
 
+import android.view.View
 import androidx.databinding.BindingAdapter
 import com.perry.wanandroid.kt.model.bean.RequestStatus
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
@@ -15,12 +16,17 @@ fun SmartRefreshLayout.srlStatus(status: RequestStatus?) {
 }
 
 @BindingAdapter("loadMoreStatus")
-fun loadMoreStatus(smartRefreshLayout: SmartRefreshLayout,status: RequestStatus?) {
+fun SmartRefreshLayout.loadMoreStatus(status: RequestStatus?) {
     when (status) {
-        RequestStatus.SUCCESS -> smartRefreshLayout.finishLoadMore(true)
-        RequestStatus.ERROR -> smartRefreshLayout.finishLoadMore(false)
-        RequestStatus.COMPLETE -> smartRefreshLayout.finishLoadMore()
+        RequestStatus.SUCCESS -> finishLoadMore(true)
+        RequestStatus.ERROR -> finishLoadMore(false)
+        RequestStatus.COMPLETE -> finishLoadMore()
         else -> {
         }
     }
+}
+
+@BindingAdapter("visible")
+fun setVisible(view: View, isVisible: Boolean) {
+    view.visibility = if (isVisible) View.VISIBLE else View.GONE
 }

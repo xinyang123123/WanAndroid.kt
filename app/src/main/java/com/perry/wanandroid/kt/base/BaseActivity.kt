@@ -25,11 +25,11 @@ abstract class BaseActivity<VM : BaseViewModel, B : ViewDataBinding> : AppCompat
 
     abstract val layoutId: Int
 
+    abstract fun providerVmClass(): Class<VM>?
+
+    abstract fun initBinding()
+
     abstract fun initData()
-
-    open fun initBinding() {}
-
-    open fun providerVmClass(): Class<VM>? = null
 
     open fun startObserve() {}
 
