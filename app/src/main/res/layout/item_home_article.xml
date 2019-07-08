@@ -21,18 +21,8 @@
         android:orientation="vertical"
         android:padding="@dimen/padding_8">
 
-        <!--title-->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxLines="2"
-            android:text="@{data.title}"
-            android:textColor="@color/text_color_222"
-            android:textSize="@dimen/text_size_14" />
-
         <!--author & typeName-->
         <RelativeLayout
-            android:layout_marginTop="@dimen/margin_8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -76,6 +66,39 @@
                     android:textSize="@dimen/text_size_10" />
 
             </LinearLayout>
+
+        </RelativeLayout>
+
+        <!--title-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8"
+            android:maxLines="2"
+            android:text="@{data.title}"
+            android:textColor="@color/text_color_222"
+            android:textSize="@dimen/text_size_14" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8">
+
+            <TextView
+                publishTime="@{data.publishTime}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textColor="@color/text_color_666"
+                android:textSize="@dimen/text_size_10" />
+
+            <ImageView
+                android:id="@+id/iv_collect"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@{data.collect? @drawable/collect_sel : @drawable/collect_unsel}" />
 
         </RelativeLayout>
 
