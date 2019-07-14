@@ -1,14 +1,18 @@
 package com.perry.wanandroid.kt.ui
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.perry.wanandroid.kt.R
+import com.perry.wanandroid.kt.base.BaseActivity
+import com.perry.wanandroid.kt.base.BaseViewModel
 import com.perry.wanandroid.kt.ui.home.HomeFragment
+import com.perry.wanandroid.kt.ui.login.LoginActivity
+import com.perry.wanandroid.kt.ui.me.MeFragment
+import com.perry.wanandroid.kt.ui.wechat.WeChatFragment
+import com.perry.wanandroid.kt.util.UserInfoUtils
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity<BaseViewModel, com.perry.wanandroid.kt.databinding.ActivityMainBinding>() {
 
     val TAG_HOME = "home"
     val TAG_WECHAT = "wechat"
@@ -16,12 +20,18 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var fragments: ArrayList<Fragment>
     private lateinit var homeFragment: HomeFragment
+    private lateinit var weChatFragment: WeChatFragment
+    private lateinit var meFragment: MeFragment
     var selected: String = TAG_HOME
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+    override val layoutId: Int = R.layout.activity_main
 
+    override fun providerVmClass(): Class<BaseViewModel>? = BaseViewModel::class.java
+
+    override fun initBinding() {
+    }
+
+    override fun initData() {
         initFragment()
         initNavigation()
     }
@@ -30,11 +40,13 @@ class MainActivity : AppCompatActivity() {
         bottom_navigation.setOnNavigationItemSelectedListener(BottomNavigationView.OnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.item_home -> selectFragment(homeFragment, TAG_HOME)
-
-                R.id.item_weChat -> {
-                }
-
+                R.id.item_weChat -> selectFragment(weChatFragment, TAG_WECHAT)
                 R.id.item_me -> {
+                    if (UserInfoUtils.isLogin()) {
+                        selectFragment(meFragment, TAG_ME)
+                    } else {
+                        startActivity(LoginActivity::class.java)
+                    }
                 }
                 else -> {
                 }
@@ -46,7 +58,12 @@ class MainActivity : AppCompatActivity() {
     private fun initFragment() {
         fragments = ArrayList()
         homeFragment = HomeFragment()
+        weChatFragment = WeChatFragment()
+        meFragment = MeFragment()
+
         fragments.add(homeFragment)
+        fragments.add(weChatFragment)
+        fragments.add(meFragment)
 
         selectFragment(homeFragment, TAG_HOME)
     }
@@ -71,18 +88,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
         transaction.commit()
-    }
-
-    private fun startFragment(fragment: Fragment, tag: String) {
-        if (fragment.isAdded) {
-            supportFragmentManager.beginTransaction()
-                    .show(fragment)
-                    .commit()
-        } else {
-            supportFragmentManager.beginTransaction()
-                    .add(R.id.fl_content, fragment, tag)
-                    .commit()
-        }
     }
 }
 

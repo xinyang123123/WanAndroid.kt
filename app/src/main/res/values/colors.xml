@@ -10,5 +10,10 @@
     <color name="colorWhite">#ffffff</color>
     <color name="text_color_666">#666666</color>
     <color name="text_color_222">#222222</color>
+    <color name="colorBg">#ededed</color>
+
+    <color name="color_text_title">#1a1a1a</color>
+    <color name="color_text_input">#333333</color>
+    <color name="color_line">#f2f2f2</color>
 
 </resources>

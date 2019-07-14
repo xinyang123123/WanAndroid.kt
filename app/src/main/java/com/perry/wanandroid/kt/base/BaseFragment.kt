@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
@@ -44,5 +45,9 @@ abstract class BaseFragment<VM : BaseViewModel, B : ViewDataBinding> : Fragment(
             viewModel = ViewModelProviders.of(this).get(it)
             lifecycle.run { addObserver(viewModel) }
         }
+    }
+
+    protected fun showToast(text: String) {
+        Toast.makeText(activity, text, Toast.LENGTH_SHORT).show()
     }
 }

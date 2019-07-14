@@ -5,7 +5,7 @@ import com.perry.wanandroid.kt.base.BaseFragment
 import com.perry.wanandroid.kt.databinding.MeFragmentBinding
 
 class MeFragment : BaseFragment<MeViewModel, MeFragmentBinding>() {
-    override val layoutId: Int = R.layout.me_fragment//To change initializer of created properties use File | Settings | File Templates.
+    override val layoutId: Int = R.layout.me_fragment
 
     override fun initBinding() {
         binding.apply {
@@ -20,6 +20,7 @@ class MeFragment : BaseFragment<MeViewModel, MeFragmentBinding>() {
     override fun providerVmClass(): Class<MeViewModel>? = MeViewModel::class.java
 
     override fun startObserve() {
+
     }
 
 }

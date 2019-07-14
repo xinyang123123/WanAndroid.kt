@@ -8,4 +8,35 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="rl_title_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/title_bar_height</item>
+        <item name="android:background">@color/colorWhite</item>
+    </style>
+
+    <style name="tv_title_style">
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:textColor">@color/color_text_title</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">@dimen/title_font_size</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="input_style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:paddingStart">@dimen/padding_def</item>
+        <item name="android:paddingEnd">@dimen/padding_def</item>
+        <item name="android:background">@null</item>
+        <item name="android:textColor">@color/color_text_input</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="input_rl_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_marginStart">30dp</item>
+        <item name="android:layout_marginEnd">30dp</item>
+    </style>
 </resources>

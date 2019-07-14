@@ -65,4 +65,8 @@ dependencies {
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.42'
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
 
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
+
+    implementation 'com.blankj:utilcodex:1.24.7'
+
 }

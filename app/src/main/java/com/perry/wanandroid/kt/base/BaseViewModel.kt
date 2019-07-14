@@ -53,7 +53,7 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
     suspend fun <T> resolveResponse(
             result: Response<T>,
             successBlock: suspend CoroutineScope.() -> Unit,
-            errorBlock: suspend CoroutineScope.() -> Unit,
+            errorBlock: suspend CoroutineScope.() -> Unit = {},
             isLoadMore: Boolean = false
     ) {
         coroutineScope {

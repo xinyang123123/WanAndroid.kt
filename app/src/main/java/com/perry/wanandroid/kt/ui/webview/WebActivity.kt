@@ -23,7 +23,7 @@ class WebActivity : BaseActivity<WebViewModel, ActivityWebBinding>() {
     private var title: String? = null
     private var id: Int? = null
 
-    override fun providerVmClass(): Class<WebViewModel>? = null
+    override fun providerVmClass(): Class<WebViewModel>? = WebViewModel::class.java
 
     override fun initBinding() {
         binding.setLifecycleOwner(this)

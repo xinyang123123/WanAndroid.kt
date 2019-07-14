@@ -1,9 +1,11 @@
 package com.perry.wanandroid.kt
 
 import android.annotation.SuppressLint
+import android.text.TextUtils
 import android.view.View
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import androidx.lifecycle.MutableLiveData
 import com.perry.wanandroid.kt.model.bean.RequestStatus
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import java.text.SimpleDateFormat
@@ -31,12 +33,22 @@ fun SmartRefreshLayout.loadMoreStatus(status: RequestStatus?) {
 }
 
 @BindingAdapter("visible")
-fun setVisible(view: View, isVisible: Boolean) {
-    view.visibility = if (isVisible) View.VISIBLE else View.GONE
+fun View.setVisible(isVisible: Boolean) {
+    visibility = if (isVisible) View.VISIBLE else View.GONE
 }
 
 @SuppressLint("SimpleDateFormat")
 @BindingAdapter("publishTime")
 fun publishTime(textView: TextView, time: Long) {
     textView.text = SimpleDateFormat("yyyy-MM-dd").format(Date(time))
+}
+
+@BindingAdapter("clearInput")
+fun View.clearInput(content: MutableLiveData<String>) {
+    setOnClickListener { content.value = "" }
+}
+
+@BindingAdapter("visibleByString")
+fun View.setVisible(string: String?) {
+    visibility = if (TextUtils.isEmpty(string)) View.GONE else View.VISIBLE
 }

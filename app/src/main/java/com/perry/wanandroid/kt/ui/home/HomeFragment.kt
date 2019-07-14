@@ -3,12 +3,15 @@ package com.perry.wanandroid.kt.ui.home
 import android.content.Intent
 import androidx.lifecycle.Observer
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.BaseQuickAdapter.SCALEIN
 import com.perry.wanandroid.kt.R
 import com.perry.wanandroid.kt.base.BaseAdapter
 import com.perry.wanandroid.kt.base.BaseFragment
 import com.perry.wanandroid.kt.databinding.FragmentHomeBinding
 import com.perry.wanandroid.kt.model.bean.Article
+import com.perry.wanandroid.kt.ui.login.LoginActivity
 import com.perry.wanandroid.kt.ui.webview.WebActivity
+import com.perry.wanandroid.kt.util.UserInfoUtils
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
@@ -46,6 +49,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
                 onItemChildClickListener = itemChildClickListener
 
                 setOnItemClickListener { adapter, view, position -> startToWebView(position) }
+                openLoadAnimation(SCALEIN)
             }
 
             rv.adapter = adapter
@@ -79,6 +83,11 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
             R.id.tv_super_chapter -> {
             }
             R.id.iv_collect -> {
+                if (UserInfoUtils.isLogin()) {
+
+                } else {
+                    startActivity(Intent(activity, LoginActivity::class.java))
+                }
             }
             else -> {
             }
