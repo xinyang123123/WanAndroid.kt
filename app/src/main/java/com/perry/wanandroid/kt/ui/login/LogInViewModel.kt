@@ -15,6 +15,7 @@ class LogInViewModel : BaseViewModel() {
     val isLoginSucceed: MutableLiveData<Boolean> = MutableLiveData(false)
 
     fun switchPwdVisibility() {
+        //TODO add listener
         isShowPassword.value = !isShowPassword.value!!
     }
 

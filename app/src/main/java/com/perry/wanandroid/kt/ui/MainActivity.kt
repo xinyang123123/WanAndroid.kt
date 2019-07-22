@@ -18,10 +18,10 @@ class MainActivity : BaseActivity<BaseViewModel, com.perry.wanandroid.kt.databin
     val TAG_WECHAT = "wechat"
     val TAG_ME = "me"
 
-    lateinit var fragments: ArrayList<Fragment>
-    private lateinit var homeFragment: HomeFragment
-    private lateinit var weChatFragment: WeChatFragment
-    private lateinit var meFragment: MeFragment
+    private var fragments: ArrayList<Fragment> = ArrayList()
+    private  var homeFragment: HomeFragment = HomeFragment()
+    private  var weChatFragment: WeChatFragment = WeChatFragment()
+    private  var meFragment: MeFragment = MeFragment()
     var selected: String = TAG_HOME
 
     override val layoutId: Int = R.layout.activity_main
@@ -46,6 +46,7 @@ class MainActivity : BaseActivity<BaseViewModel, com.perry.wanandroid.kt.databin
                         selectFragment(meFragment, TAG_ME)
                     } else {
                         startActivity(LoginActivity::class.java)
+                        return@OnNavigationItemSelectedListener false
                     }
                 }
                 else -> {
@@ -56,11 +57,6 @@ class MainActivity : BaseActivity<BaseViewModel, com.perry.wanandroid.kt.databin
     }
 
     private fun initFragment() {
-        fragments = ArrayList()
-        homeFragment = HomeFragment()
-        weChatFragment = WeChatFragment()
-        meFragment = MeFragment()
-
         fragments.add(homeFragment)
         fragments.add(weChatFragment)
         fragments.add(meFragment)

@@ -31,7 +31,7 @@ interface WanAndroidApi {
     suspend fun getBlogType(): Response<List<SystemParent>>
 
     @GET("/wxarticle/list/{id}/{page}/json")
-    fun getBlogArticle(@Path("id") id: Int, @Path("page") page: Int): Response<ArticleList>
+    suspend fun getBlogArticle(@Path("id") id: Int, @Path("page") page: Int): Response<ArticleList>
 
     @GET("/project/list/{page}/json")
     suspend fun getProjectTypeDetail(@Path("page") page: Int, @Query("cid") cid: Int): Response<ArticleList>

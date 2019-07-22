@@ -25,7 +25,7 @@ class HomeViewModel : BaseViewModel() {
             resolveResponse(result, {
                 listData.value = result.data.datas
                 page++
-            }, {})
+            })
         }
     }
 
@@ -36,7 +36,7 @@ class HomeViewModel : BaseViewModel() {
                 if (result.data.over) loadMoreStatus.value = RequestStatus.COMPLETE
                 loadMoreData.value = result.data.datas
                 page++
-            }, {}, true)
+            }, isLoadMore = true)
         }
     }
 

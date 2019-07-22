@@ -4,11 +4,11 @@ import android.text.TextUtils
 import androidx.lifecycle.Observer
 import com.perry.wanandroid.kt.R
 import com.perry.wanandroid.kt.base.BaseActivity
-import com.perry.wanandroid.kt.databinding.LoginActivityBinding
+import com.perry.wanandroid.kt.databinding.ActivityLoginBinding
 
 
-class LoginActivity : BaseActivity<LogInViewModel, LoginActivityBinding>() {
-    override val layoutId: Int = R.layout.login_activity
+class LoginActivity : BaseActivity<LogInViewModel, ActivityLoginBinding>() {
+    override val layoutId: Int = R.layout.activity_login
 
     override fun providerVmClass(): Class<LogInViewModel>? = LogInViewModel::class.java
 
