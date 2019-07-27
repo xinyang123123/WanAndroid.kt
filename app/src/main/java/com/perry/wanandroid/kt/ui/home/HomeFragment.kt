@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
 
-    private var adapter: BaseAdapter<Article>? = null
+    private var adapter: BaseAdapter<Article> = BaseAdapter(R.layout.item_home_article, null)
 
     override val layoutId: Int = R.layout.fragment_home
 
@@ -26,8 +26,9 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
     }
 
     override fun initData() {
-        srl.setOnRefreshListener { viewModel.getHomeArticles() }
-        srl.setOnLoadMoreListener { viewModel.loadMoreHomeArticles() }
+        initSrl()
+        initAdapter()
+        initRv()
         viewModel.getHomeArticles()
     }
 
@@ -36,34 +37,37 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
     }
 
     override fun startObserve() {
-        viewModel.listData.observe(this, Observer(this::setRv))
-        viewModel.loadMoreData.observe(this, Observer(this::loadMore))
+        viewModel.listData.observe(this, Observer { adapter.setNewData(it) })
+        viewModel.loadMoreData.observe(this, Observer { adapter.addData(it) })
     }
 
-    private fun setRv(data: List<Article>) {
-        if (adapter == null) {
-            adapter = BaseAdapter(R.layout.item_home_article, data).apply {
-                addChildClickEvent(R.id.tv_chapter)
-                addChildClickEvent(R.id.tv_super_chapter)
-                addChildClickEvent(R.id.iv_collect)
-                onItemChildClickListener = itemChildClickListener
+    private fun initSrl() {
+        srl.setOnRefreshListener { viewModel.getHomeArticles() }
+        srl.setOnLoadMoreListener { viewModel.loadMoreHomeArticles() }
+    }
 
-                setOnItemClickListener { adapter, view, position -> startToWebView(position) }
-                openLoadAnimation(SCALEIN)
-            }
+    private fun initAdapter() {
+        adapter.apply {
+            addChildClickEvent(R.id.tv_chapter)
+            addChildClickEvent(R.id.tv_super_chapter)
+            addChildClickEvent(R.id.iv_collect)
+            onItemChildClickListener = itemChildClickListener
 
-            rv.adapter = adapter
-        } else {
-            adapter?.setNewData(data)
+            setOnItemClickListener { _, _, position -> startToWebView(position) }
+            openLoadAnimation(SCALEIN)
         }
     }
 
+    private fun initRv() {
+        rv.adapter = adapter
+    }
+
     private fun loadMore(data: List<Article>) {
-        adapter?.addData(data)
+        adapter.addData(data)
     }
 
     private fun startToWebView(position: Int) {
-        val article = adapter?.getItem(position)
+        val article = adapter.getItem(position)
 
         val intent = Intent(activity, WebActivity::class.java).apply {
             putExtra(WebActivity.KEY_URL, article?.link)

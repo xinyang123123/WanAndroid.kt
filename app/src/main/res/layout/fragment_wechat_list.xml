@@ -19,8 +19,8 @@
             android:id="@+id/srl"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            loadMoreStatus="@{vm.loadMoreStatus}"
-            srlStatus="@{vm.srlStatus}">
+            loadMoreStatus="@{viewModel.loadMoreStatus}"
+            srlStatus="@{viewModel.srlStatus}">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv"

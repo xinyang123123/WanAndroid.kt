@@ -7,7 +7,7 @@ import androidx.databinding.ViewDataBinding
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.perry.wanandroid.kt.BR
 
-class BaseAdapter<T>(itemLayoutId: Int, data: List<T>) : BaseQuickAdapter<T, BindingViewHolder>(itemLayoutId, data) {
+class BaseAdapter<T>(itemLayoutId: Int, data: List<T>?) : BaseQuickAdapter<T, BindingViewHolder>(itemLayoutId, data) {
 
     private var childViewClickListenerList: ArrayList<Int> = ArrayList()
 
