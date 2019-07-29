@@ -5,6 +5,10 @@
     <data>
 
         <variable
+            name="fragment"
+            type="com.perry.wanandroid.kt.ui.me.MeFragment" />
+
+        <variable
             name="viewModel"
             type="com.perry.wanandroid.kt.ui.me.MeViewModel" />
 
@@ -16,33 +20,29 @@
         android:background="@color/colorBg"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="@color/colorWhite"
-            android:padding="@dimen/padding_def">
+        <TextView
+            style="@style/me_item"
+            visibleWithStringNotEmpty="@{viewModel.username}"
+            android:text="@{viewModel.username}" />
 
-            <ImageView
-                android:id="@+id/iv_avatar"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_marginTop="90dp"
-                android:src="@mipmap/ic_launcher" />
+        <TextView
+            style="@style/me_item"
+            visibleWithStringEmpty="@{viewModel.username}"
+            android:layout_marginTop="@dimen/margin_def"
+            android:onClick="@{view -> fragment.startToLogin()}"
+            android:text="@string/me_login_now" />
 
-            <TextView
-                android:id="@+id/tv_username"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@id/iv_avatar"
-                android:layout_marginStart="@dimen/margin_def"
-                android:layout_toEndOf="@id/iv_avatar"
-                android:text="@{viewModel.username}"
-                android:textColor="@color/text_color_222"
-                android:textSize="@dimen/text_size_16" />
+        <TextView
+            style="@style/me_item"
+            android:layout_marginTop="@dimen/margin_def"
+            android:text="@string/me_collection_article" />
 
-        </RelativeLayout>
-
-
+        <TextView
+            style="@style/me_item"
+            visibleWithStringNotEmpty="@{viewModel.username}"
+            android:layout_marginTop="@dimen/margin_def"
+            android:onClick="@{() -> fragment.logout()}"
+            android:text="@string/me_logout" />
     </LinearLayout>
 
 </layout>

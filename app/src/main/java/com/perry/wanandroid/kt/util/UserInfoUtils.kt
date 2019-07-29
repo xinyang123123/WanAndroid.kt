@@ -24,4 +24,8 @@ object UserInfoUtils {
         SPUtils.getInstance().put(SP_USERNAME, user.username)
     }
 
+    fun clearUserInfo() {
+        SPUtils.getInstance().put(SP_IS_LOGIN, false)
+        SPUtils.getInstance().put(SP_USERNAME, "")
+    }
 }

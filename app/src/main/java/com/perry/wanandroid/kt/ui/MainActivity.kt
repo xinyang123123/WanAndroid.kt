@@ -6,10 +6,8 @@ import com.perry.wanandroid.kt.R
 import com.perry.wanandroid.kt.base.BaseActivity
 import com.perry.wanandroid.kt.base.BaseViewModel
 import com.perry.wanandroid.kt.ui.home.HomeFragment
-import com.perry.wanandroid.kt.ui.login.LoginActivity
 import com.perry.wanandroid.kt.ui.me.MeFragment
 import com.perry.wanandroid.kt.ui.wechat.WeChatFragment
-import com.perry.wanandroid.kt.util.UserInfoUtils
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity<BaseViewModel, com.perry.wanandroid.kt.databinding.ActivityMainBinding>() {
@@ -19,9 +17,9 @@ class MainActivity : BaseActivity<BaseViewModel, com.perry.wanandroid.kt.databin
     val TAG_ME = "me"
 
     private var fragments: ArrayList<Fragment> = ArrayList()
-    private  var homeFragment: HomeFragment = HomeFragment()
-    private  var weChatFragment: WeChatFragment = WeChatFragment()
-    private  var meFragment: MeFragment = MeFragment()
+    private var homeFragment: HomeFragment = HomeFragment()
+    private var weChatFragment: WeChatFragment = WeChatFragment()
+    private var meFragment: MeFragment = MeFragment()
     var selected: String = TAG_HOME
 
     override val layoutId: Int = R.layout.activity_main
@@ -41,14 +39,7 @@ class MainActivity : BaseActivity<BaseViewModel, com.perry.wanandroid.kt.databin
             when (it.itemId) {
                 R.id.item_home -> selectFragment(homeFragment, TAG_HOME)
                 R.id.item_weChat -> selectFragment(weChatFragment, TAG_WECHAT)
-                R.id.item_me -> {
-                    if (UserInfoUtils.isLogin()) {
-                        selectFragment(meFragment, TAG_ME)
-                    } else {
-                        startActivity(LoginActivity::class.java)
-                        return@OnNavigationItemSelectedListener false
-                    }
-                }
+                R.id.item_me -> selectFragment(meFragment, TAG_ME)
                 else -> {
                 }
             }

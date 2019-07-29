@@ -5,4 +5,7 @@
     <string name="input_account_hint">请输入账号</string>
     <string name="login_to_register">立即注册</string>
     <string name="login_to_reset_password">重置密码</string>
+    <string name="me_login_now">立即登陆</string>
+    <string name="me_collection_article">收藏文章</string>
+    <string name="me_logout">退出登陆</string>
 </resources>

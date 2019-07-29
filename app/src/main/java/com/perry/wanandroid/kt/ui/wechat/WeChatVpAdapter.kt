@@ -2,11 +2,11 @@ package com.perry.wanandroid.kt.ui.wechat
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.fragment.app.FragmentPagerAdapter
 import com.perry.wanandroid.kt.model.bean.SystemParent
 
 class WeChatVpAdapter(fragmentManager: FragmentManager?, private val data: List<SystemParent>) :
-        FragmentStatePagerAdapter(fragmentManager) {
+        FragmentPagerAdapter(fragmentManager) {
     override fun getItem(position: Int): Fragment {
         return WeChatListFragment(data[position])
     }

@@ -39,4 +39,13 @@
         <item name="android:layout_marginStart">30dp</item>
         <item name="android:layout_marginEnd">30dp</item>
     </style>
+    <style name="me_item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/me_item_height</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">@color/colorWhite</item>
+        <item name="android:textColor">@color/text_color_222</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:padding">@dimen/padding_def</item>
+    </style>
 </resources>

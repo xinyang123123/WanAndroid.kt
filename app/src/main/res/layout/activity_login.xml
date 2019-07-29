@@ -65,7 +65,7 @@
 
             <ImageView
                 clearInput="@{viewModel.account}"
-                visibleByString="@{viewModel.account}"
+                visibleWithStringNotEmpty="@{viewModel.account}"
                 android:layout_width="26dp"
                 android:layout_height="26dp"
                 android:padding="4dp"

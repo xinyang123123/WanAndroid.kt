@@ -48,7 +48,12 @@ fun View.clearInput(content: MutableLiveData<String>) {
     setOnClickListener { content.value = "" }
 }
 
-@BindingAdapter("visibleByString")
-fun View.setVisible(string: String?) {
+@BindingAdapter("visibleWithStringNotEmpty")
+fun View.setVisibleWithStringNotEmpty(string: String?) {
     visibility = if (TextUtils.isEmpty(string)) View.GONE else View.VISIBLE
+}
+
+@BindingAdapter("visibleWithStringEmpty")
+fun View.setVisibleWithStringEmpty(string: String?) {
+    visibility = if (TextUtils.isEmpty(string)) View.VISIBLE else View.GONE
 }
