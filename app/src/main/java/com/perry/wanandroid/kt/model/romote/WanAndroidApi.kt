@@ -57,6 +57,9 @@ interface WanAndroidApi {
     @POST("/user/register")
     suspend fun register(@Field("username") userName: String, @Field("password") passWord: String, @Field("repassword") rePassWord: String): Response<User>
 
+    @GET("/user/logout/json")
+    suspend fun logout() : Response<Any>
+
     @GET("/lg/collect/list/{page}/json")
     suspend fun getCollectArticles(@Path("page") page: Int): Response<ArticleList>
 

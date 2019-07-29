@@ -3,12 +3,12 @@ package com.perry.wanandroid.kt.ui.login
 import androidx.lifecycle.MutableLiveData
 import com.perry.wanandroid.kt.base.BaseViewModel
 import com.perry.wanandroid.kt.model.bean.RequestStatus
-import com.perry.wanandroid.kt.model.repository.LoginRepository
+import com.perry.wanandroid.kt.model.repository.UserRepository
 import com.perry.wanandroid.kt.util.UserInfoUtils
 
 class LogInViewModel : BaseViewModel() {
 
-    private val repository by lazy { LoginRepository() }
+    private val repository by lazy { UserRepository() }
     val account: MutableLiveData<String> = MutableLiveData()
     val password: MutableLiveData<String> = MutableLiveData()
     val isShowPassword: MutableLiveData<Boolean> = MutableLiveData(false)

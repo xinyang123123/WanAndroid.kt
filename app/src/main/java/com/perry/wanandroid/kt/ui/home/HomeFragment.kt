@@ -37,6 +37,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
     }
 
     override fun startObserve() {
+        super.startObserve()
         viewModel.listData.observe(this, Observer { adapter.setNewData(it) })
         viewModel.loadMoreData.observe(this, Observer { adapter.addData(it) })
     }
@@ -62,10 +63,6 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
         rv.adapter = adapter
     }
 
-    private fun loadMore(data: List<Article>) {
-        adapter.addData(data)
-    }
-
     private fun startToWebView(position: Int) {
         val article = adapter.getItem(position)
 
@@ -86,16 +83,25 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
             }
             R.id.tv_super_chapter -> {
             }
-            R.id.iv_collect -> {
-                if (UserInfoUtils.isLogin()) {
-
-                } else {
-                    startActivity(Intent(activity, LoginActivity::class.java))
-                }
-            }
+            R.id.iv_collect -> collect(item, position)
             else -> {
             }
         }
+    }
+
+    private fun collect(item: Article, position: Int) {
+        if (!UserInfoUtils.isLogin()) {
+            startActivity(Intent(activity, LoginActivity::class.java))
+            return
+        }
+
+        if (item.collect) {
+            viewModel.cancelCollectArticle(item.id)
+        } else {
+            viewModel.collectArticle(item.id)
+        }
+        item.collect = !item.collect
+        adapter.notifyItemChanged(position)
     }
 
 }

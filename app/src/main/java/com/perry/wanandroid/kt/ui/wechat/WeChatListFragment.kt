@@ -75,17 +75,24 @@ class WeChatListFragment(private val typeInfo: SystemParent) :
         var item = adapter.getItem(position) as Article
         when (view.id) {
             R.id.iv_collect -> {
-                collectArticle(item)
+                collectArticle(item, position)
             }
         }
     }
 
-    private fun collectArticle(item: Article) {
-        if (UserInfoUtils.isLogin()) {
-
-        } else {
+    private fun collectArticle(item: Article, position: Int) {
+        if (!UserInfoUtils.isLogin()) {
             startActivity(Intent(activity, LoginActivity::class.java))
+            return
         }
+
+        if (item.collect) {
+            viewModel.cancelCollectArticle(item.id)
+        } else {
+            viewModel.collectArticle(item.id)
+        }
+        item.collect = !item.collect
+        adapter.notifyItemChanged(position)
     }
 
 }

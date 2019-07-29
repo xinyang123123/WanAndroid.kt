@@ -28,7 +28,7 @@ abstract class BaseRetrofitClient {
             builder.addInterceptor(logging)
                 .connectTimeout(TIME_OUT.toLong(), TimeUnit.SECONDS)
 
-//            handleBuilder(builder)
+            handleBuilder(builder)
 
             return builder.build()
         }
